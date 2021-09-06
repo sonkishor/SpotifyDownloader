@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+{% block downloadmenu %}
+<script src="/static/scripts.js"></script>
+
+<div class="text-center">
+    <h1 class="p-3" style="color: rgb(21, 196, 73);">Downloaded</h1>
+    <p style="color:aliceblue;">Your songs are ready</p>
+    <form method="POST">
+        <button id="post-btn" class="btn btn-dark">Click here to download</button>
+    </form>
+</div>
+{% endblock downloadmenu %}

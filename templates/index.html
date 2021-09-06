@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+  <title>Hello, world!</title>
+
+  <script src="/static/scripts.js"></script>
+
+  <script>
+    let facts = {{ factlist | safe }};
+    function change_fact() {
+      document.getElementById("factbutton").innerHTML = facts[Math.floor(Math.random() * facts.length)];
+    }
+  </script>
+</head>
+
+<body style="background-color: #121212;">
+
+  <!-- Navbar -->
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="navbar">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">Spotify Playlist Downloader</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+        aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+        </ul>
+        <span class="navbar-text">
+          KS11
+        </span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Navbar End -->
+
+
+  <div class="position-absolute top-50 start-50 translate-middle border border-white p-5" style="border-radius: 10%;">
+    {% block downloadmenu %}
+    <div id="statusDiv" style="display: block;">
+      <h1 class="p-3" style="color: rgb(21, 196, 73);">Spotify Playlist Download</h1>
+      <form action="#" method="POST">
+        <input class="form-control form-control-lg shadow-lg p-3 bg-white rounded" type="text"
+          placeholder="Paste the link here" name="link" id="link">
+
+        <div class="p-3 text-center">
+          <button type="submit" class="btn btn-dark my-2 px-5 py-3" onclick="changeStatus(); embed()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-download"
+              viewBox="0 0 16 16">
+              <path
+                d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z" />
+              <path
+                d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z" />
+            </svg>
+            <span class="px-2">Download</span>
+          </button>
+      </form>
+    </div>
+  </div>
+
+  <div id="loading" class="text-center" style="display: none;">
+    <div class="spinner-border text-success" role="status" style="width: 5rem; height: 5rem;">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+    <h1 class="pd-3">Please wait...downloading</h1>
+    <div class="py-3" id="fact">
+      <button id="factbutton" class="btn btn-dark" onclick = 'change_fact()'>Here is a funfact: {{ firstfact }} ... Click again for more</button>
+    </div>
+
+    <iframe src="{{ linkp }}" width="100%" height="380" frameBorder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+    {% endblock %}
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
