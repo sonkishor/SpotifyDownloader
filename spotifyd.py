@@ -10,7 +10,7 @@ import os
 import pafy
 from zipfile import ZipFile
 
-auth_manager = SpotifyClientCredentials(client_id="32568dfa826a42619a4ba6cdd55a4d66", client_secret="67c44f1f60b7427298935835a01bd6a5")
+auth_manager = SpotifyClientCredentials(client_id="", client_secret="")
 sp = spotipy.Spotify(auth_manager=auth_manager)
 playlist_title = ""
 def spotlist(url):
